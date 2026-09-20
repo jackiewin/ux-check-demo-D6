@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Web Craft | 品牌體驗與前端實作班</title>
+  <script>
+    // 在 DOM 解析完成前先開始讀取 JSON，縮短動態內容的等待時間。
+    document.documentElement.classList.add('is-data-loading');
+    window.websiteContentRequest = fetch('data/website-content.json');
+    window.websiteContentRequest.catch(() => {});
+
+    // 若外部程式或資料載入失敗，最多等待 1.5 秒便恢復頁面顯示。
+    window.setTimeout(() => {
+      document.documentElement.classList.remove('is-data-loading');
+    }, 1500);
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="images/favicon.svg" type="image/svg+xml">
+
+</head>
+<body>
+
+  <!-- 導覽列 HEADER -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="index.html" class="logo">
+          AI Web <span>Craft</span>
+        </a>
+        <button class="nav-toggle" aria-label="開啟導覽選單" aria-expanded="false" aria-controls="nav-menu">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+        <ul class="nav-links" id="nav-menu">
+          <li><a href="index.html" class="active">首頁</a></li>
+          <li><a href="courses.html">課程介紹</a></li>
+          <li><a href="contact.html">預約諮詢</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO 區塊 -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="kicker" id="hero-kicker">載入中...</div>
+          <h1 id="hero-title">載入中...</h1>
+          <p id="hero-subtitle">載入中...</p>
+          <div class="hero-actions">
+            <a href="#features" class="btn btn-primary" id="hero-cta">查看課程特色</a>
+            <a href="courses.html" class="btn btn-outline">了解完整模組</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 課程特色區塊 -->
+    <section id="features">
+      <div class="container">
+        <h2 class="section-title" id="features-title">課程特色</h2>
+        <div class="features-grid" id="features-container">
+          <!-- 動態渲染卡片內容 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 常見問題區塊 -->
+    <section id="faq">
+      <div class="container">
+        <h2 class="section-title" id="faq-title">常見問題</h2>
+        <div class="faq-container" id="faq-container">
+          <!-- 動態渲染 FAQ 內容 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 聯絡與行動呼籲區塊 -->
+    <section class="contact-section">
+      <div class="container">
+        <div class="contact-card">
+          <h2 id="contact-title">準備套用自己的品牌內容</h2>
+          <p id="contact-description">請整理品牌名稱、目標對象與網站目的，再請 Gemini 依照這份 JSON 格式產生自己的網站內容。</p>
+          <div class="contact-actions">
+            <a href="contact.html" class="btn btn-primary">立即預約諮詢</a>
+            <a href="courses.html" class="btn btn-outline">查看課程地圖</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER 頁尾 -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p id="footer-copyright">© 2026 AI 輔助網站內容生成練習</p>
+        <p>AI Web Craft | 品牌體驗與前端實作班</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
